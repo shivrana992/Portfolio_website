@@ -7,25 +7,19 @@ const searchData = [
     title: 'Home',
     description: 'Go to the welcome page',
     path: '/',
-    keywords: ['home', 'cv', 'resume', 'start', 'welcome', 'portfolio', 'niladri', 'niladri chatterjee', 'niladri1', 'software developer', 'full stack developer', 'mern stack', 'web developer'],
+    keywords: ['home', 'cv', 'resume', 'start', 'welcome', 'portfolio', 'shiv', 'Shiv Kumar Rana', 'shivrana992', 'software developer', 'full stack developer', 'mern stack', 'web developer'],
   },
   {
     title: 'About',
     description: 'Learn more about me and my background',
     path: '/about',
-    keywords: ['about', 'background', 'education', 'bio', 'profile', 'cv', 'resume', 'niladri', 'chatterjee', 'full stack developer', 'software engineer', 'web developer'],
+    keywords: ['about', 'background', 'education', 'bio', 'profile', 'cv', 'resume', 'shiv', 'rana', 'full stack developer', 'software engineer', 'web developer'],
   },
   {
     title: 'Education',
     description: 'View my educational background',
     path: '/education',
     keywords: ['education', 'university', 'college', 'degree', 'school', 'board', 'computer science', 'engineering', 'b.tech', 'bengal college'],
-  },
-  {
-    title: 'Experience',
-    description: 'Check out my professional experience',
-    path: '/experience',
-    keywords: ['experience', 'work', 'career', 'jobs', 'professional', 'internships', 'certificates', 'mern', 'web developer', 'full stack', 'software developer'],
   },
   {
     title: 'Skills',
@@ -38,12 +32,6 @@ const searchData = [
     description: 'View my portfolio of projects',
     path: '/projects',
     keywords: ['projects', 'portfolio', 'work', 'examples', 'github', 'code', 'open-source', 'web applications', 'full stack', 'mern stack', 'react', 'node'],
-  },
-  {
-    title: 'Certificates',
-    description: 'View my certifications and achievements',
-    path: '/certificates',
-    keywords: ['certificates', 'certifications', 'achievements', 'courses', 'learning', 'skills', 'professional', 'development', 'awards', 'badges'],
   },
   {
     title: 'Contact',

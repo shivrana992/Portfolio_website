@@ -1,5 +1,5 @@
 {
-  "name": "niladri_chatterjee_portfolio",
+  "name": "shiv_kumar_rana_portfolio",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -11,6 +11,7 @@
   "dependencies": {
     "framer-motion": "^11.0.5",
     "lucide-react": "^0.344.0",
+    "nodemon": "^3.1.14",
     "ogl": "^1.0.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

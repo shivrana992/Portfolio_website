@@ -1,9 +1,9 @@
 <div align="center">
 
-# Niladri Chatterjee — Portfolio 🚀
+# Shiv Kumar Rana — Portfolio 🚀
 
 [![Website](https://img.shields.io/website?label=Live%20Portfolio&style=for-the-badge&url=https%3A%2F%2Fniladri1.vercel.app)](https://niladri1.vercel.app)
-[![GitHub followers](https://img.shields.io/github/followers/niladri-1?logo=github&style=for-the-badge)](https://github.com/niladri-1)
+[![GitHub followers](https://img.shields.io/github/followers/shivrana992?logo=github&style=for-the-badge)](https://github.com/shivrana992)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-4000%2B%20Followers-blue?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/niladri1)
 [![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://niladri1.vercel.app)
 
@@ -13,11 +13,11 @@
 
 <h3>Full Stack Developer · MERN Stack Specialist · Kolkata, India</h3>
 
-[🌐 View Live](https://niladri1.vercel.app) · [🐛 Report Bug](https://github.com/niladri-1/Software-Dev-Portfolio/issues) · [✨ Request Feature](https://github.com/niladri-1/Software-Dev-Portfolio/issues)
+[🌐 View Live](https://niladri1.vercel.app) · [🐛 Report Bug](https://github.com/shivrana992/Software-Dev-Portfolio/issues) · [✨ Request Feature](https://github.com/shivrana992/Software-Dev-Portfolio/issues)
 
 <br/>
 
-<img src="https://niladri1.vercel.app/og-image.png" alt="Niladri Chatterjee Portfolio Preview" width="80%" style="border-radius: 12px;" />
+<img src="https://niladri1.vercel.app/og-image.png" alt="Shiv Kumar Rana Portfolio Preview" width="80%" style="border-radius: 12px;" />
 
 </div>
 
@@ -114,7 +114,7 @@ A modern, fully responsive personal portfolio built with **React 18 + Vite 5** a
 
 ```bash
 # Clone the repository
-git clone https://github.com/niladri-1/niladri-1/Personal-portfolio
+git clone https://github.com/shivrana992/Personal-portfolio
 
 # Navigate to project
 cd Personal-portfolio
@@ -141,12 +141,10 @@ npm run preview
 | Section | Description |
 |---------|-------------|
 | 🏠 Home | Introduction, live GitHub stats, social links |
-| 👨‍💻 About | Background, achievements, areas of interest |
+| 👨‍💻 About | Background, areas of interest |
 | 📂 Projects | Full stack projects with tech stack details |
-| 💼 Experience | Internships and professional work history |
 | 🎓 Education | B.Tech Computer Science — 8.48 CGPA |
 | 🛠️ Skills | Categorized technical skills with icons |
-| 🏆 Certificates | Professional certifications |
 | 📞 Contact | Email, WhatsApp, LinkedIn, GitHub |
 
 </div>
@@ -173,8 +171,8 @@ This portfolio is fully SEO-optimized:
 
 <div align="center">
 
-[![Email](https://img.shields.io/badge/Email-code.niladri%40gmail.com-red?style=for-the-badge&logo=gmail)](mailto:code.niladri@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-niladri1-blue?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/niladri1)
+[![Email](https://img.shields.io/badge/Email-cuetshivrana992%40gmail.com-red?style=for-the-badge&logo=gmail)](mailto:cuetshivrana992@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-shiv--kumar--rana--990048345-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/shiv-kumar-rana-990048345)
 [![Portfolio](https://img.shields.io/badge/Portfolio-niladri1.vercel.app-orange?style=for-the-badge&logo=vercel)](https://niladri1.vercel.app)
 
 </div>
@@ -185,9 +183,9 @@ This portfolio is fully SEO-optimized:
 
 <div align="center">
 
-[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=niladri-1&theme=dark&hide_border=true)](https://github.com/niladri-1)
+[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=shivrana992&theme=dark&hide_border=true)](https://github.com/shivrana992)
 
-[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=niladri-1&layout=compact&theme=dark&hide_border=true)](https://github.com/niladri-1)
+[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=shivrana992&layout=compact&theme=dark&hide_border=true)](https://github.com/shivrana992)
 
 </div>
 

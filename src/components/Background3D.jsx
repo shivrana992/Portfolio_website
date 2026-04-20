@@ -60,6 +60,7 @@ const Background3D = ({
   const animationIdRef = useRef(null);
   const meshRef = useRef(null);
   const cleanupFunctionRef = useRef(null);
+  const isPageVisibleRef = useRef(!document.hidden);
   const [isVisible, setIsVisible] = useState(false);
   const observerRef = useRef(null);
 
@@ -100,7 +101,7 @@ const Background3D = ({
       if (!containerRef.current) return;
 
       const renderer = new Renderer({
-        dpr: Math.min(window.devicePixelRatio, 2),
+        dpr: Math.min(window.devicePixelRatio, 1),
         alpha: true,
       });
       rendererRef.current = renderer;
@@ -249,7 +250,7 @@ void main() {
       const updatePlacement = () => {
         if (!containerRef.current || !renderer) return;
 
-        renderer.dpr = Math.min(window.devicePixelRatio, 2);
+        renderer.dpr = Math.min(window.devicePixelRatio, 1.25);
 
         const { clientWidth: wCSS, clientHeight: hCSS } = containerRef.current;
         renderer.setSize(wCSS, hCSS);
@@ -265,10 +266,24 @@ void main() {
         uniforms.rayDir.value = dir;
       };
 
+      const frameInterval = 1000 / 30;
+      let lastFrame = 0;
+
       const loop = (t) => {
         if (!rendererRef.current || !uniformsRef.current || !meshRef.current) {
           return;
         }
+
+        if (!isPageVisibleRef.current) {
+          animationIdRef.current = requestAnimationFrame(loop);
+          return;
+        }
+
+        if (t - lastFrame < frameInterval) {
+          animationIdRef.current = requestAnimationFrame(loop);
+          return;
+        }
+        lastFrame = t;
 
         uniforms.iTime.value = t * 0.001;
 
@@ -298,6 +313,12 @@ void main() {
       };
 
       window.addEventListener("resize", updatePlacement);
+
+      const handleVisibilityChange = () => {
+        isPageVisibleRef.current = !document.hidden;
+      };
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+
       updatePlacement();
       animationIdRef.current = requestAnimationFrame(loop);
 
@@ -308,6 +329,7 @@ void main() {
         }
 
         window.removeEventListener("resize", updatePlacement);
+        document.removeEventListener("visibilitychange", handleVisibilityChange);
 
         if (renderer) {
           try {
@@ -402,8 +424,12 @@ void main() {
       mouseRef.current = { x, y };
     };
 
-    if (followMouse) {
-      window.addEventListener("mousemove", handleMouseMove);
+    const canTrackMouse =
+      followMouse &&
+      window.matchMedia?.("(pointer: fine)")?.matches;
+
+    if (canTrackMouse) {
+      window.addEventListener("mousemove", handleMouseMove, { passive: true });
       return () => window.removeEventListener("mousemove", handleMouseMove);
     }
   }, [followMouse]);

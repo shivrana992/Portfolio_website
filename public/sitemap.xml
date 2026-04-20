@@ -39,7 +39,6 @@
 
   <!-- Experience Page - High Priority -->
   <url>
-    <loc>https://niladri1.vercel.app/experience</loc>
     <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -55,7 +54,6 @@
 
   <!-- Certificates Page - Medium Priority -->
   <url>
-    <loc>https://niladri1.vercel.app/certificates</loc>
     <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

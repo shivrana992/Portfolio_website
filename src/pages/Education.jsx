@@ -3,34 +3,65 @@ import { GraduationCap, Calendar, MapPin, BookOpen, Award, FileText, ExternalLin
 import { ScrollAnimation } from '@/components/ScrollAnimation'
 import collegeImg from '@/assets/education/college_img.jpg'
 import schoolImg from '@/assets/education/school_img.jpg'
-import bTechPdf from '@/assets/files/education_pdf/B Tech.pdf'
-import hsMarkSheetPdf from '@/assets/files/education_pdf/HS MARK SHEET.pdf'
+import mastersImg from '@/assets/education/nit.jpg'
+import bTechPdf from '@/assets/files/education_pdf/BCA.pdf'
+import hsMarkSheetPdf from '@/assets/files/education_pdf/12th.pdf'
+import mcaMarkSheetPdf from '@/assets/files/education_pdf/MCA.pdf'
+import tenthMarkSheetPdf from '@/assets/files/education_pdf/10th.pdf'
 
 const Education = () => {
   const educationData = [
     {
-      school: 'Bengal College of Engineering and Technology',
-      location: 'Durgapur, WB, India',
+      school: 'National Institute Of Technology (NIT)',
+      location: 'Trichy, Tamil Nadu, India',
+      duration: 'July 2024 - Present',
+      degree: 'MCA',
+      grade: 'Pursuing',
+      image: mastersImg,
+      resultUrl: mcaMarkSheetPdf,
+      documentName: 'MCA.pdf',
+      coursework: ['DSA', 'OPPS', 'DAA', 'Computer Networks', 'Web Technologies', 'OS', 'DBMS', 'DCC'],
+      description:
+        'Currently pursuing MCA with focus on advanced software engineering concepts, scalable application development, and practical problem-solving through projects and coding practice.',
+    },
+    {
+      school: 'Sanskar College Of Professional Studies',
+      location: 'Indore, MP, India',
       duration: 'July 2020 - June 2024',
-      degree: 'B.Tech (Computer Science and Engineering)',
-      grade: 'CGPA: 8.48 (80%)',
+      degree: 'BCA',
+      grade: 'CGPA: 8.47',
       image: collegeImg,
       resultUrl: bTechPdf,
+      documentName: 'BCA.pdf',
       coursework: ["Software Development", 'DSA', 'OOPs', 'DBMS', 'AI', 'ML', 'OS', 'Networking'],
       description:
         'During my time at BCET, I have built a strong foundation in computer science, focusing on software development, problem-solving, and real-world applications. Engaging in hands-on projects, internships, and coding challenges has helped me enhance my technical and analytical skills.',
     },
     {
-      school: 'Birsingha Bhagabati Vidyalaya (H.S)',
-      location: 'Medinipur, WB, India',
+      school: 'ST. Francis HR. SEC. School',
+      location: 'Pithampur, MP, India',
       duration: 'June 2018 - July 2019',
       degree: 'Higher Secondary (WBSC)',
-      grade: 'Percentage: 79%',
+      grade: 'Percentage: 95%',
       image: schoolImg,
       resultUrl: hsMarkSheetPdf,
-      subjects: ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'Computer Science'],
+      documentName: '12th.pdf',
+      subjects: ['Physics', 'Chemistry', 'Mathematics', 'Physical Education', 'English'],
       description:
-        'My higher secondary education laid the foundation for my technical journey, strengthening my analytical thinking and problem-solving abilities. The strong emphasis on mathematics and computer science has been instrumental in shaping my passion for software development.',
+        'My higher secondary education laid the foundation for my technical journey, strengthening my analytical thinking and problem-solving abilities. The strong emphasis on mathematics has been instrumental in shaping my passion for software development.',
+    },
+    {
+      school: 'ST. Francis HR. SEC. School',
+      location: 'Pithampur, MP, India',
+      duration: 'June 2016 - May 2017',
+      degree: 'Secondary (10th)',
+      grade: 'Percentage: 89.4%',
+      image: schoolImg,
+      resultUrl: tenthMarkSheetPdf,
+      documentName: '10th.pdf',
+      subjects: ['Mathematics', 'Science', 'Social Science', 'English', 'Hindi'],
+      description:
+        'My secondary education established my academic fundamentals and built disciplined study habits, curiosity for science, and confidence in analytical learning.',
     },
   ]
 
@@ -50,7 +81,7 @@ const Education = () => {
 
       <div className="space-y-12">
         {educationData.map((edu, index) => (
-          <ScrollAnimation key={edu.school}>
+          <ScrollAnimation key={`${edu.school}-${edu.degree}`}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -131,6 +162,9 @@ const Education = () => {
                     View Result
                     <ExternalLink className="w-4 h-4" />
                   </motion.a>
+                  {edu.documentName && (
+                    <p className="text-xs text-gray-400 mt-2">Document: {edu.documentName}</p>
+                  )}
                 </div>
               </div>
             </motion.div>

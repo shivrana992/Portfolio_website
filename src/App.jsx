@@ -1,61 +1,49 @@
-import { Suspense, lazy, useEffect } from "react";
+import { Suspense, lazy, useEffect, useMemo, useState } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import Background3D from "./components/Background3D";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Loading from "./components/Loading";
 
+const Background3D = lazy(() => import("./components/Background3D"));
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
 const Education = lazy(() => import("./pages/Education"));
-const Experience = lazy(() => import("./pages/Experience"));
 const Skills = lazy(() => import("./pages/Skills"));
 const Projects = lazy(() => import("./pages/Projects"));
-const Certificates = lazy(() => import("./pages/Certificates"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Per-page SEO metadata
 const pageMeta = {
   "/": {
-    title: "Niladri Chatterjee - Full Stack Developer | MERN Stack Expert",
+    title: "Shiv Kumar Rana - Full Stack Developer | MERN Stack Expert",
     description:
-      "Niladri Chatterjee — Full Stack Developer specializing in MERN stack, React.js, Node.js, Next.js and TypeScript. Based in Kolkata, India.",
+      "Shiv Kumar Rana — Full Stack Developer specializing in MERN stack, React.js, Node.js, Next.js and TypeScript. Based in Kolkata, India.",
   },
   "/about": {
-    title: "About - Niladri Chatterjee | Full Stack Developer",
+    title: "About - Shiv Kumar Rana | Full Stack Developer",
     description:
-      "Learn about Niladri Chatterjee — B.Tech Computer Science graduate, Full Stack Developer with 3+ internships and 10+ projects. Based in Kolkata, India.",
+      "Learn about Shiv Kumar Rana — Master of Computer Apllications Student",
   },
   "/projects": {
-    title: "Projects - Niladri Chatterjee | Full Stack Developer Portfolio",
+    title: "Projects - Shiv Kumar Rana | Full Stack Developer Portfolio",
     description:
-      "Explore full-stack web projects built by Niladri Chatterjee using React.js, Node.js, MongoDB, Next.js and TypeScript.",
+      "Explore full-stack web projects built by Shiv Kumar Rana using React.js, Node.js, MongoDB, Next.js and TypeScript.",
   },
   "/skills": {
-    title: "Skills - Niladri Chatterjee | React, Node.js, MERN Stack",
+    title: "Skills - Shiv Kumar Rana | React, Node.js, MERN Stack",
     description:
-      "Technical skills of Niladri Chatterjee — React.js, Node.js, Express, MongoDB, Next.js, TypeScript, AWS, Docker and more.",
-  },
-  "/experience": {
-    title: "Experience - Niladri Chatterjee | Full Stack Developer",
-    description:
-      "Professional experience of Niladri Chatterjee including 3+ internships in full stack web development.",
+      "Technical skills of Shiv Kumar Rana — React.js, Node.js, Express, MongoDB, Next.js, TypeScript, AWS, Docker and more.",
   },
   "/education": {
-    title: "Education - Niladri Chatterjee | B.Tech Computer Science",
+    title: "Education - Shiv Kumar Rana | B.Tech Computer Science",
     description:
-      "Educational background of Niladri Chatterjee — B.Tech in Computer Science with 8.48 CGPA.",
-  },
-  "/certificates": {
-    title: "Certificates - Niladri Chatterjee | Developer Certifications",
-    description:
-      "Professional certifications and achievements of Niladri Chatterjee in web development and cloud technologies.",
+      "Educational background of Shiv Kumar Rana — B.Tech in Computer Science with 8.48 CGPA.",
   },
   "/contact": {
-    title: "Contact - Niladri Chatterjee | Hire a Full Stack Developer",
+    title: "Contact - Shiv Kumar Rana | Hire a Full Stack Developer",
     description:
-      "Get in touch with Niladri Chatterjee for freelance projects, job opportunities or collaborations. Based in Kolkata, India.",
+      "Get in touch with Shiv Kumar Rana for freelance projects, job opportunities or collaborations. Based in Kolkata, India.",
   },
 };
 
@@ -65,9 +53,9 @@ function SEOUpdater() {
 
   useEffect(() => {
     const meta = pageMeta[location.pathname] || {
-      title: "Niladri Chatterjee - Full Stack Developer",
+      title: "Shiv Kumar Rana - Full Stack Developer",
       description:
-        "Portfolio of Niladri Chatterjee — Full Stack Developer specializing in MERN stack and modern web technologies.",
+        "Portfolio of Shiv Kumar Rana — Full Stack Developer specializing in MERN stack and modern web technologies.",
     };
 
     document.title = meta.title;
@@ -85,14 +73,14 @@ function SEOUpdater() {
     if (ogUrl)
       ogUrl.setAttribute(
         "content",
-        `https://niladri1.vercel.app${location.pathname}`,
+        `${window.location.origin}${location.pathname}`,
       );
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical)
       canonical.setAttribute(
         "href",
-        `https://niladri1.vercel.app${location.pathname}`,
+        `${window.location.origin}${location.pathname}`,
       );
   }, [location]);
 
@@ -100,11 +88,55 @@ function SEOUpdater() {
 }
 
 function App() {
+  const [showBackground, setShowBackground] = useState(false);
+  const shouldUseBackground = useMemo(() => {
+    if (typeof window === "undefined") return false;
+
+    const reducedMotion = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)",
+    )?.matches;
+    const isSmallViewport = window.innerWidth < 1024;
+    const lowCpu = navigator.hardwareConcurrency
+      ? navigator.hardwareConcurrency <= 4
+      : false;
+    const lowMemory = navigator.deviceMemory ? navigator.deviceMemory <= 4 : false;
+
+    return !(reducedMotion || isSmallViewport || lowCpu || lowMemory);
+  }, []);
+
+  useEffect(() => {
+    if (!shouldUseBackground) return;
+
+    let timeoutId;
+    let idleId;
+
+    const enableBackground = () => {
+      timeoutId = window.setTimeout(() => setShowBackground(true), 900);
+    };
+
+    if (typeof window.requestIdleCallback === "function") {
+      idleId = window.requestIdleCallback(enableBackground, { timeout: 1500 });
+    } else {
+      timeoutId = window.setTimeout(enableBackground, 700);
+    }
+
+    return () => {
+      if (timeoutId) window.clearTimeout(timeoutId);
+      if (idleId && typeof window.cancelIdleCallback === "function") {
+        window.cancelIdleCallback(idleId);
+      }
+    };
+  }, [shouldUseBackground]);
+
   return (
     <BrowserRouter>
       <SEOUpdater />
       <div className="min-h-screen flex flex-col">
-        <Background3D />
+        {showBackground && shouldUseBackground ? (
+          <Suspense fallback={null}>
+            <Background3D />
+          </Suspense>
+        ) : null}
         <Navbar />
         <main className="flex-grow">
           <Suspense fallback={<Loading />}>
@@ -112,10 +144,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/education" element={<Education />} />
-              <Route path="/experience" element={<Experience />} />
               <Route path="/skills" element={<Skills />} />
               <Route path="/projects" element={<Projects />} />
-              <Route path="/certificates" element={<Certificates />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

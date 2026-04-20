@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Github, Linkedin, MessageCircle, Clock, Send, MessageSquare } from 'lucide-react'
 import { useState } from 'react'
+import { CONTACT_INFO } from '@/config/contact'
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
@@ -12,18 +13,14 @@ const Contact = () => {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
+      const subject = encodeURIComponent(formData.subject)
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      )
+      window.location.href = `mailto:${CONTACT_INFO.email}?subject=${subject}&body=${body}`
 
-      if (response.ok) {
-        setSubmitStatus('success')
-        setFormData({ name: '', email: '', subject: '', message: '' })
-      } else {
-        setSubmitStatus('error')
-      }
+      setSubmitStatus('success')
+      setFormData({ name: '', email: '', subject: '', message: '' })
     } catch (error) {
       console.error('Error:', error)
       setSubmitStatus('error')
@@ -33,16 +30,16 @@ const Contact = () => {
   }
 
   const contactInfo = [
-    { icon: <Mail className="w-5 h-5" />, label: 'Email', value: 'code.niladri@gmail.com', link: 'mailto:code.niladri@gmail.com' },
-    { icon: <Phone className="w-5 h-5" />, label: 'Phone', value: '+916296554939', link: 'tel:+916296554939' },
-    { icon: <MapPin className="w-5 h-5" />, label: 'Location', value: 'Kolkata, West Bengal, India' },
-    { icon: <Clock className="w-5 h-5" />, label: 'Time Zone', value: 'IST (UTC+5:30)' },
+    { icon: <Mail className="w-5 h-5" />, label: 'Email', value: CONTACT_INFO.email, link: `mailto:${CONTACT_INFO.email}` },
+    { icon: <Phone className="w-5 h-5" />, label: 'Phone', value: CONTACT_INFO.phone, link: `tel:${CONTACT_INFO.phone.replace(/\s/g, '')}` },
+    { icon: <MapPin className="w-5 h-5" />, label: 'Location', value: CONTACT_INFO.location },
+    { icon: <Clock className="w-5 h-5" />, label: 'Time Zone', value: CONTACT_INFO.timezone },
   ]
 
   const socialLinks = [
-    { icon: <Github className="w-5 h-5" />, label: 'GitHub', link: 'https://github.com/niladri-1' },
-    { icon: <Linkedin className="w-5 h-5" />, label: 'LinkedIn', link: 'https://linkedin.com/in/niladri1' },
-    { icon: <MessageCircle className="w-5 h-5" />, label: 'WhatsApp', link: 'https://wa.me/+916296554939' },
+    { icon: <Github className="w-5 h-5" />, label: 'GitHub', link: CONTACT_INFO.github },
+    { icon: <Linkedin className="w-5 h-5" />, label: 'LinkedIn', link: CONTACT_INFO.linkedin },
+    { icon: <MessageCircle className="w-5 h-5" />, label: 'WhatsApp', link: `https://wa.me/${CONTACT_INFO.whatsapp.replace(/\D/g, '')}` },
   ]
 
   return (
@@ -125,19 +122,6 @@ const Contact = () => {
               </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="bg-gray-800/50 p-5 sm:p-6 rounded-xl backdrop-blur-sm"
-            >
-              <h3 className="text-lg sm:text-xl font-semibold mb-4">Office Hours</h3>
-              <div className="space-y-2 text-gray-400 text-sm sm:text-base">
-                <p>Monday - Friday: 9:00 AM - 6:00 PM (IST)</p>
-                <p>Saturday: 10:00 AM - 2:00 PM (IST)</p>
-                <p>Sunday: Closed</p>
-              </div>
-            </motion.div>
           </div>
 
           {/* Right Column - Form */}
@@ -212,7 +196,7 @@ const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-green-400 text-center text-sm sm:text-base"
                 >
-                  Message sent successfully! I'll get back to you soon.
+                  Your email app opened with the message draft addressed to me.
                 </motion.p>
               )}
 
@@ -222,7 +206,7 @@ const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-red-400 text-center text-sm sm:text-base"
                 >
-                  Something went wrong. Please try again.
+                  Unable to open your email app. Please contact me directly at {CONTACT_INFO.email}.
                 </motion.p>
               )}
             </form>

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import { Code2, Menu, X } from 'lucide-react'
 import SearchDialog from './SearchDialog'
 
@@ -12,20 +11,13 @@ const Navbar = () => {
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
     { path: '/education', label: 'Education' },
-    { path: '/experience', label: 'Experience' },
     { path: '/skills', label: 'Skills' },
     { path: '/projects', label: 'Projects' },
-    { path: '/certificates', label: 'Certificates' },
     { path: '/contact', label: 'Contact' },
   ]
 
   return (
-    <motion.nav
-      className="fixed top-0 w-full z-50"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <nav className="fixed top-0 w-full z-50">
       <div className="relative">
         <div className="absolute inset-0 bg-black/50 backdrop-blur-xl" />
 
@@ -34,7 +26,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3">
               <Code2 className="w-8 h-8 text-white" aria-hidden="true" />
-              <span className="text-xl font-bold text-white">Niladri</span>
+              <span className="text-xl font-bold text-white">Shiv</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -73,11 +65,8 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <motion.div
+          <div
             className="md:hidden absolute top-full left-0 right-0 bg-black/50 backdrop-blur-xl"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2 }}
           >
             <div className="px-4 pt-2 pb-3 space-y-1">
               {navLinks.map((link) => (
@@ -96,10 +85,10 @@ const Navbar = () => {
                 </Link>
               ))}
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
-    </motion.nav>
+    </nav>
   )
 }
 

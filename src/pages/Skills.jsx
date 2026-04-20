@@ -3,115 +3,91 @@ import {
   Layout,
   Server,
   Database,
-  MessageSquare,
-  Brain,
-  Cloud,
-  Terminal,
   Wrench,
-  Users,
 } from "lucide-react";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
-import {
-  JavaScriptLogo,
-  ReactLogo,
-  TypeScriptLogo,
-  NodeLogo,
-  MongoDBLogo,
-  VSCodeLogo,
-  GitLogo,
-  TailwindLogo,
-  NextjsLogo,
-  VercelLogo,
-  PythonLogo,
-  ReduxLogo,
-  ExpressLogo,
-  BcryptLogo,
-  JWTLogo,
-  AWSLogo,
-  RenderLogo,
-  PostmanLogo,
-  BashLogo,
-  WindowsLogo,
-  UbuntuLogo,
-  LinuxLogo,
-} from "@/components/TechLogos";
+import javascriptLogo from "@/assets/tech_logos/javascript.svg";
+import reactLogo from "@/assets/tech_logos/react.svg";
+import cppLogo from "@/assets/tech_logos/cpp.svg";
+import javaLogo from "@/assets/tech_logos/java.svg";
+import pythonLogo from "@/assets/tech_logos/python.svg";
+import htmlLogo from "@/assets/tech_logos/html5.svg";
+import bootstrapLogo from "@/assets/tech_logos/bootstrap.svg";
+import cssLogo from "@/assets/tech_logos/css3.svg";
+import nodeLogo from "@/assets/tech_logos/nodejs.svg";
+import expressLogo from "@/assets/tech_logos/express.svg";
+import jwtLogo from "@/assets/tech_logos/jwt.svg";
+import bcryptLogo from "@/assets/tech_logos/bcrypt.svg";
+import mongodbLogo from "@/assets/tech_logos/mongodb.svg";
+import postgresLogo from "@/assets/tech_logos/postgresql.svg";
+import awsLogo from "@/assets/tech_logos/aws.svg";
+import gitLogo from "@/assets/tech_logos/git.svg";
+import githubLogo from "@/assets/tech_logos/github.svg";
+import vercelLogo from "@/assets/tech_logos/vercel.svg";
+import vscodeLogo from "@/assets/tech_logos/vscode.svg";
+import postmanLogo from "@/assets/tech_logos/postman.svg";
+
+const SkillLogo = ({ src, alt }) => (
+  <img src={src} alt={alt} className="w-5 h-5" loading="lazy" />
+);
 
 const skills = [
   {
     category: "Programming Languages",
     icon: <Code2 className="w-6 h-6" />,
     items: [
-      { name: "JavaScript", icon: <JavaScriptLogo /> },
-      { name: "TypeScript", icon: <TypeScriptLogo /> },
-      { name: "Python", icon: <PythonLogo /> },
-      { name: "Bash", icon: <BashLogo /> },
+      { name: "JavaScript", icon: <SkillLogo src={javascriptLogo} alt="JavaScript" /> },
+      { name: "C++", icon: <SkillLogo src={cppLogo} alt="C++" /> },
+      { name: "Python", icon: <SkillLogo src={pythonLogo} alt="Python" /> },
+      { name: "Java", icon: <SkillLogo src={javaLogo} alt="Java" /> },
     ],
   },
   {
     category: "Front-End Development",
     icon: <Layout className="w-6 h-6" />,
     items: [
-      { name: "React.js", icon: <ReactLogo /> },
-      { name: "Next.js", icon: <NextjsLogo /> },
-      { name: "Tailwind", icon: <TailwindLogo /> },
-      { name: "Redux", icon: <ReduxLogo /> },
+      { name: "React.js", icon: <SkillLogo src={reactLogo} alt="React" /> },
+      { name: "HTML", icon: <SkillLogo src={htmlLogo} alt="HTML" /> },
+      { name: "Bootstrap", icon: <SkillLogo src={bootstrapLogo} alt="Bootstrap" /> },
+      { name: "CSS", icon: <SkillLogo src={cssLogo} alt="CSS" /> },
     ],
   },
   {
     category: "Back-End Development",
     icon: <Server className="w-6 h-6" />,
     items: [
-      { name: "Node.js", icon: <NodeLogo /> },
-      { name: "Express", icon: <ExpressLogo /> },
-      { name: "JWT", icon: <JWTLogo /> },
-      { name: "Bcrypt", icon: <BcryptLogo /> },
+      { name: "Node.js", icon: <SkillLogo src={nodeLogo} alt="Node.js" /> },
+      { name: "Express", icon: <SkillLogo src={expressLogo} alt="Express" /> },
+      { name: "JWT", icon: <SkillLogo src={jwtLogo} alt="JWT" /> },
+      { name: "Bcrypt", icon: <SkillLogo src={bcryptLogo} alt="Bcrypt" /> },
     ],
   },
   {
     category: "Databases & Cloud Storage",
     icon: <Database className="w-6 h-6" />,
     items: [
-      { name: "MongoDB", icon: <MongoDBLogo /> },
-      { name: "Cloudinary", icon: <Cloud className="w-4 h-4" /> },
-      { name: "AWS", icon: <AWSLogo /> },
+      { name: "MongoDB", icon: <SkillLogo src={mongodbLogo} alt="MongoDB" /> },
+      { name: "Postgres SQL", icon: <SkillLogo src={postgresLogo} alt="PostgreSQL" /> },
+      { name: "AWS", icon: <SkillLogo src={awsLogo} alt="AWS" /> },
     ],
   },
   {
     category: "Version Control & DevOps",
-    icon: <GitLogo />,
+    icon: <SkillLogo src={gitLogo} alt="Git" />,
     items: [
-      { name: "Git", icon: <GitLogo /> },
-      { name: "GitHub", icon: <GitLogo /> },
-      { name: "Vercel", icon: <VercelLogo /> },
-      { name: "Render", icon: <RenderLogo /> },
+      { name: "Git", icon: <SkillLogo src={gitLogo} alt="Git" /> },
+      { name: "GitHub", icon: <SkillLogo src={githubLogo} alt="GitHub" /> },
+      { name: "Vercel", icon: <SkillLogo src={vercelLogo} alt="Vercel" /> },
     ],
   },
   {
     category: "Tools & Platforms",
     icon: <Wrench className="w-6 h-6" />,
     items: [
-      { name: "VS Code", icon: <VSCodeLogo /> },
-      { name: "Git Desktop", icon: <GitLogo /> },
-      { name: "Compass", icon: <MongoDBLogo /> },
-      { name: "Postman", icon: <PostmanLogo /> },
-    ],
-  },
-  {
-    category: "Operating Systems",
-    icon: <Terminal className="w-6 h-6" />,
-    items: [
-      { name: "Windows", icon: <WindowsLogo className="w-4 h-4" /> },
-      { name: "Ubuntu", icon: <UbuntuLogo className="w-4 h-4" /> },
-      { name: "Linux", icon: <LinuxLogo className="w-4 h-4" /> },
-    ],
-  },
-  {
-    category: "Soft Skills",
-    icon: <Brain className="w-6 h-6" />,
-    items: [
-      { name: "Teamwork", icon: <Users className="w-4 h-4" /> },
-      { name: "Communication", icon: <MessageSquare className="w-4 h-4" /> },
-      { name: "Debugging", icon: <Wrench className="w-4 h-4" /> },
+      { name: "VS Code", icon: <SkillLogo src={vscodeLogo} alt="VS Code" /> },
+      { name: "Git Desktop", icon: <SkillLogo src={gitLogo} alt="Git" /> },
+      { name: "Compass", icon: <SkillLogo src={mongodbLogo} alt="MongoDB Compass" /> },
+      { name: "Postman", icon: <SkillLogo src={postmanLogo} alt="Postman" /> },
     ],
   },
 ];
